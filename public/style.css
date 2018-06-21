@@ -19,16 +19,26 @@ h2 {
 #articles {
   overflow: auto;
   height: 500px;
-  background: rgba(229, 212, 192, 0.664);
-  border-radius: 25px;
+  /* background: rgba(229, 212, 192, 0.664);
+  border-radius: 25px; */
+  margin: 20px;
 }
 #notes {
   overflow: auto;
   height: 500px;
-  background: rgba(229, 212, 192, 0.664);
-  border-radius: 25px;
+  /* background: rgba(229, 212, 192, 0.664);
+  border-radius: 25px; */
+  margin: 20px;
 }
 .main {
     margin-left: 50px;
     margin-right: 50px;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+}
+.l6 {
+  background: rgba(229, 212, 192, 0.664);
+  border-radius: 25px;
+  border: solid rgba(0, 0, 0, 0.5) 2px;
 }
