@@ -18,7 +18,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-mongoose.connect("mongodb://localhost/scraperHW");
+
+var databaseUrl = "mongodb://localhost/scraperHW";
+
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect(databaseUrl);
+}
 
 app.get("/scrape", function (req, res) {
   axios.get("https://www.nytimes.com/section/sports?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=Sports&WT.nav=page").then(function (response) {
