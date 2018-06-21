@@ -20,12 +20,12 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 mongoose.connect("mongodb://localhost/scraperHW");
 
-app.get("/scrape", function(req, res) {
-  axios.get("https://www.nytimes.com/section/sports?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=Sports&WT.nav=page").then(function(response) {
+app.get("/scrape", function (req, res) {
+  axios.get("https://www.nytimes.com/section/sports?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=Sports&WT.nav=page").then(function (response) {
 
     var $ = cheerio.load(response.data);
 
-    $("ol h2").each(function(i, element) {
+    $("ol h2").each(function (i, element) {
       var result = {};
       result.title = $(this)
         .children("a")
@@ -35,10 +35,10 @@ app.get("/scrape", function(req, res) {
         .attr("href");
 
       db.Article.create(result)
-        .then(function(dbArticle) {
+        .then(function (dbArticle) {
           console.log(dbArticle);
         })
-        .catch(function(err) {
+        .catch(function (err) {
           return res.json(err);
         });
     });
@@ -46,44 +46,44 @@ app.get("/scrape", function(req, res) {
   });
 });
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.render("index", {});
 });
 
-app.get("/articles", function(req, res) {
+app.get("/articles", function (req, res) {
   db.Article.find({})
-    .then(function(dbArticle) {
+    .then(function (dbArticle) {
       res.json(dbArticle);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.json(err);
     });
 });
 
-app.get("/articles/:id", function(req, res) {
+app.get("/articles/:id", function (req, res) {
   db.Article.findOne({ _id: req.params.id })
     .populate("note")
-    .then(function(dbArticle) {
+    .then(function (dbArticle) {
       res.json(dbArticle);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.json(err);
     });
 });
 
-app.post("/articles/:id", function(req, res) {
+app.post("/articles/:id", function (req, res) {
   db.Note.create(req.body)
-    .then(function(dbNote) {
+    .then(function (dbNote) {
       return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
     })
-    .then(function(dbArticle) {
+    .then(function (dbArticle) {
       res.json(dbArticle);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.json(err);
     });
 });
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log("App running on port " + PORT + "!");
 });

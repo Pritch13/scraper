@@ -9,8 +9,8 @@ h1 {
     font-family: 'Berkshire Swash', cursive;
     font-size: 110px;
 }
-h2 {
-  font-family: 'Berkshire Swash', cursive;
+h6 {
+  font-size: 1.60rem;
 }
 .material-icons {
   display: block;
@@ -19,26 +19,26 @@ h2 {
 #articles {
   overflow: auto;
   height: 500px;
-  /* background: rgba(229, 212, 192, 0.664);
-  border-radius: 25px; */
   margin: 20px;
+  font-family: 'Cabin', sans-serif;
+
 }
 #notes {
   overflow: auto;
   height: 500px;
-  /* background: rgba(229, 212, 192, 0.664);
-  border-radius: 25px; */
   margin: 20px;
+  font-family: 'Cabin', sans-serif;
+
 }
 .main {
     margin-left: 50px;
     margin-right: 50px;
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder { 
   color: black;
 }
 .l6 {
-  background: rgba(229, 212, 192, 0.664);
-  border-radius: 25px;
+  background: rgba(229, 212, 192, 0.384);
+  border-radius: 10px;
   border: solid rgba(0, 0, 0, 0.5) 2px;
 }
