@@ -42,3 +42,13 @@ h6 {
   border-radius: 10px;
   border: solid rgba(0, 0, 0, 0.5) 2px;
 }
+#scrape {
+  display: block;
+  margin: 0 auto;
+  background: black;
+  color: white;
+}
+button {
+  background: black;
+  color: white;
+}

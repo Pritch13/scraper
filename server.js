@@ -49,7 +49,7 @@ app.get("/scrape", function (req, res) {
           return res.json(err);
         });
     });
-    res.send("Scrape Complete");
+    res.status(200).redirect("/");
   });
 });
 
